@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Döviz</string>
+
+    <!-- MainActivity -->
+    <string name="main_activity_exchange_rates_menu_title">Döviz Kurları</string>
+    <string name="main_activity_settings_menu_title">Ayarlar</string>
 </resources>
