@@ -10,9 +10,11 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import butterknife.BindView;
 import com.serkancay.doviz.R;
+import com.serkancay.doviz.helper.LocaleHelper;
 import com.serkancay.doviz.ui.base.BaseActivity;
 import com.serkancay.doviz.ui.base.BaseFragment;
 import com.serkancay.doviz.ui.rates.RatesFragment;
+import com.serkancay.doviz.ui.settings.SettingsFragment;
 
 public class MainActivity extends BaseActivity implements MainView {
 
@@ -28,6 +30,8 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private RatesFragment frRates;
 
+    private SettingsFragment frSettings;
+
     private MainPresenter mPresenter;
 
     @Override
@@ -40,6 +44,11 @@ public class MainActivity extends BaseActivity implements MainView {
         frRates = new RatesFragment();
         mPresenter = new MainPresenter(this);
         mPresenter.addFragment(frRates, false);
+    }
+
+    @Override
+    protected void attachBaseContext(final Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
     }
 
     @Override
@@ -83,9 +92,19 @@ public class MainActivity extends BaseActivity implements MainView {
         public boolean onNavigationItemSelected(@NonNull final MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.miExchangeRates: {
+                    clearBackStack();
+                    if (frRates == null) {
+                        frRates = new RatesFragment();
+                    }
+                    mPresenter.addFragment(frRates, false);
                     return true;
                 }
                 case R.id.miSettings: {
+                    clearBackStack();
+                    if (frSettings == null) {
+                        frSettings = new SettingsFragment();
+                    }
+                    mPresenter.addFragment(frSettings, false);
                     return true;
                 }
             }

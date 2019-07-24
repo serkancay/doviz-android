@@ -8,4 +8,6 @@ public class Constants {
 
     public static final String FCM_TOPIC_ALL_USERS = "allUsers";
 
+    public static final String DEFAULT_LANGUAGE = "tr";
+
 }

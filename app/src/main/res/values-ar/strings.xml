@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Döviz</string>
+    <string name="main_activity_settings_menu_title">الإعدادات</string>
+    <string name="main_activity_exchange_rates_menu_title">معدل التحويل</string>
+    <string name="rates_fragment_title">معدل التحويل</string>
+    <string name="history_fragment_title">أسعار الصرف التاريخية</string>
+    <string name="history_fragment_share_menu_title">شارك</string>
+    <string name="settings_fragment_title">الإعدادات</string>
+    <string name="settings_fragment_spinner_turkish">اللغة التركية</string>
+    <string name="settings_fragment_spinner_arabic">عربى</string>
+    <string name="settings_fragment_spinner_select">اختار اللغة</string>
+</resources>

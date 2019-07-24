@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
+import com.serkancay.doviz.App;
 import com.serkancay.doviz.ui.base.FragmentNavigation.Presenter;
 
 /**
@@ -86,4 +87,9 @@ public class BaseFragment extends Fragment implements FragmentNavigation.View {
     public void attachPresenter(final Presenter presenter) {
         mNavigationPresenter = presenter;
     }
+
+    public App getApp() {
+        return (App) activity.getApplication();
+    }
+
 }
