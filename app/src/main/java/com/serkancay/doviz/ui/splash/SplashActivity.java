@@ -1,6 +1,6 @@
 package com.serkancay.doviz.ui.splash;
 
-import com.serkancay.doviz.MainActivity;
+import com.serkancay.doviz.ui.main.MainActivity;
 import com.serkancay.doviz.ui.base.BaseActivity;
 
 /**
