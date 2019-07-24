@@ -1,12 +1,13 @@
 package com.serkancay.doviz.ui.rates;
 
-import android.provider.Telephony.Mms.Rate;
 import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import com.serkancay.doviz.R;
 import com.serkancay.doviz.data.network.AppApiHelper;
-import com.serkancay.doviz.data.network.model.LatestRatesResponse.Rates;
+import com.serkancay.doviz.data.network.model.Rate;
 import com.serkancay.doviz.ui.base.BaseFragment;
+import com.serkancay.doviz.ui.rates.RateListAdapter.Callback;
+import com.serkancay.doviz.ui.rates.history.HistoryFragment;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -21,7 +22,7 @@ public class RatesFragment extends BaseFragment implements RatesView {
 
     private RatesPresenter mPresenter;
 
-    private HashMap<String, Rates> mRatesHashMap;
+    private HashMap<String, Rate> mRatesHashMap;
 
     private RateListAdapter mRateListAdapter;
 
@@ -39,7 +40,14 @@ public class RatesFragment extends BaseFragment implements RatesView {
     }
 
     @Override
+    public void bindEvents() {
+        mRateListAdapter.setCallback(mCallback);
+    }
+
+    @Override
     public void onResumed() {
+        getNavigationPresenter().setTitle(getResources().getString(R.string.rates_fragment_title));
+        getNavigationPresenter().setDisplayHomeAsUpEnabled(false);
         mPresenter.onResume();
     }
 
@@ -59,13 +67,22 @@ public class RatesFragment extends BaseFragment implements RatesView {
     }
 
     @Override
-    public void updateRate(final String base, final String date, final Rates rates) {
-        mRatesHashMap.put(base, rates);
+    public void updateRate(final String base, final String date, final Rate rate) {
+        mRatesHashMap.put(base, rate);
         mRateListAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void navigateToDetailScreen() {
-
+    public void navigateToHistoryScreen(final String base) {
+        HistoryFragment frHistory = new HistoryFragment();
+        frHistory.setBase(base);
+        getNavigationPresenter().addFragment(frHistory, true);
     }
+
+    private Callback mCallback = new Callback() {
+        @Override
+        public void onItemClicked(final String base) {
+            mPresenter.navigate(base);
+        }
+    };
 }

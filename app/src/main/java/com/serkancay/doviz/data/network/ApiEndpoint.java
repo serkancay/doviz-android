@@ -11,6 +11,8 @@ public final class ApiEndpoint {
 
     public static final String ENDPOINT_LATEST_RATES = BuildConfig.BASE_URL + "/latest";
 
+    public static final String ENDPOINT_HISTORY_RATES = BuildConfig.BASE_URL + "/history";
+
     private ApiEndpoint() {
     }
 

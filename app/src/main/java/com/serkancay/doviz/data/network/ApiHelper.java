@@ -1,6 +1,7 @@
 package com.serkancay.doviz.data.network;
 
 
+import com.serkancay.doviz.data.network.model.HistoryRatesResponse;
 import com.serkancay.doviz.data.network.model.LatestRatesResponse;
 import io.reactivex.Observable;
 
@@ -11,5 +12,7 @@ import io.reactivex.Observable;
 public interface ApiHelper {
 
     Observable<LatestRatesResponse> getLatestRatesApiCall(String base);
+
+    Observable<HistoryRatesResponse> getHistoryRatesApiCall(String startDate, String endDate, String symbol, String base);
 
 }

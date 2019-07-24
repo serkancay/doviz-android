@@ -1,7 +1,6 @@
 package com.serkancay.doviz.ui.rates;
 
-import android.provider.Telephony.Mms.Rate;
-import com.serkancay.doviz.data.network.model.LatestRatesResponse.Rates;
+import com.serkancay.doviz.data.network.model.Rate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,8 +14,8 @@ public interface RatesView {
 
     void hideProgress();
 
-    void updateRate(String base, String date, Rates rates);
+    void updateRate(String base, String date, Rate rate);
 
-    void navigateToDetailScreen();
+    void navigateToHistoryScreen(String base);
 
 }

@@ -7,4 +7,8 @@
 
     <!-- RatesFragment -->
     <string name="rates_fragment_title">Döviz Kurları</string>
+
+    <!-- HistoryFragment -->
+    <string name="history_fragment_title">Geçmiş Kur Değerleri</string>
+    <string name="history_fragment_share_menu_title">Paylaş</string>
 </resources>

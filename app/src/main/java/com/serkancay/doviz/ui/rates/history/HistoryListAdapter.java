@@ -1,4 +1,4 @@
-package com.serkancay.doviz.ui.rates;
+package com.serkancay.doviz.ui.rates.history;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,15 +9,13 @@ import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.serkancay.doviz.R;
 import com.serkancay.doviz.data.network.model.Rate;
-import com.serkancay.doviz.ui.rates.RateListAdapter.RateHolder;
+import com.serkancay.doviz.ui.rates.history.HistoryListAdapter.HistoryHolder;
 import com.serkancay.doviz.util.CurrencyFormatter;
 import java.util.HashMap;
 
@@ -25,26 +23,23 @@ import java.util.HashMap;
  * Created by S.Serkan Cay on 24.07.2019
  */
 
-public class RateListAdapter extends Adapter<RateHolder> {
+public class HistoryListAdapter extends Adapter<HistoryHolder> {
 
-    static class RateHolder extends ViewHolder {
+    static class HistoryHolder extends ViewHolder {
+
+        @BindView(R.id.tvDate)
+        TextView tvDate;
 
         @BindView(R.id.tvValue)
         TextView tvValue;
 
-        @BindView(R.id.tvUnit)
-        TextView tvUnit;
-
-        @BindView(R.id.llRootButton)
-        LinearLayout llRootButton;
-
-        RateHolder(View view) {
+        HistoryHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
     }
 
-    private final int RESOURCE = R.layout.item_rate_list;
+    private final int RESOURCE = R.layout.item_history_list;
 
     private HashMap<String, Rate> mRatesHashMap;
 
@@ -56,9 +51,7 @@ public class RateListAdapter extends Adapter<RateHolder> {
 
     private DividerItemDecoration mItemDecoration;
 
-    private Callback mCallback;
-
-    public RateListAdapter(Context context, HashMap<String, Rate> ratesHashMap) {
+    public HistoryListAdapter(Context context, HashMap<String, Rate> ratesHashMap) {
         mRatesHashMap = ratesHashMap;
         mInflater = LayoutInflater.from(context);
         mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
@@ -67,27 +60,19 @@ public class RateListAdapter extends Adapter<RateHolder> {
 
     @NonNull
     @Override
-    public RateHolder onCreateViewHolder(@NonNull final ViewGroup viewGroup, final int i) {
+    public HistoryHolder onCreateViewHolder(@NonNull final ViewGroup viewGroup, final int i) {
         View item = mInflater.inflate(RESOURCE, viewGroup, false);
-        RateHolder holder = new RateHolder(item);
+        HistoryHolder holder = new HistoryHolder(item);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RateHolder holder, final int i) {
+    public void onBindViewHolder(@NonNull final HistoryHolder holder, final int i) {
         mKeys = mRatesHashMap.keySet().toArray(new String[mRatesHashMap.size()]);
         final String key = mKeys[i];
         Rate rate = mRatesHashMap.get(key);
         holder.tvValue.setText(CurrencyFormatter.format(CurrencyFormatter.TRY, rate.getTry()));
-        holder.tvUnit.setText(key);
-        holder.llRootButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                if (mCallback != null) {
-                    mCallback.onItemClicked(key);
-                }
-            }
-        });
+        holder.tvDate.setText(key);
     }
 
     @Override
@@ -102,11 +87,4 @@ public class RateListAdapter extends Adapter<RateHolder> {
         recyclerView.addItemDecoration(mItemDecoration);
     }
 
-    public void setCallback(Callback callback) {
-        mCallback = callback;
-    }
-
-    public interface Callback{
-        void onItemClicked(String base);
-    }
 }

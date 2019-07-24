@@ -41,6 +41,10 @@ public class BaseFragment extends Fragment implements FragmentNavigation.View {
     public void onDestroyed() {
     }
 
+    public void bindEvents() {
+
+    }
+
     public FragmentNavigation.Presenter getNavigationPresenter() {
         return mNavigationPresenter;
     }
@@ -56,6 +60,7 @@ public class BaseFragment extends Fragment implements FragmentNavigation.View {
             ButterKnife.bind(this, vgContainer);
         }
         onCreated();
+        bindEvents();
         return vgContainer;
     }
 

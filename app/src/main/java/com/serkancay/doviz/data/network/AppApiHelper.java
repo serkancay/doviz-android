@@ -2,6 +2,7 @@ package com.serkancay.doviz.data.network;
 
 
 import com.rx2androidnetworking.Rx2AndroidNetworking;
+import com.serkancay.doviz.data.network.model.HistoryRatesResponse;
 import com.serkancay.doviz.data.network.model.LatestRatesResponse;
 import io.reactivex.Observable;
 
@@ -26,6 +27,19 @@ public class AppApiHelper implements ApiHelper {
                 .addQueryParameter("base", base)
                 .build()
                 .getObjectObservable(LatestRatesResponse.class);
+    }
+
+    @Override
+    public Observable<HistoryRatesResponse> getHistoryRatesApiCall(final String startDate, final String endDate,
+            final String symbol,
+            final String base) {
+        return Rx2AndroidNetworking.get(ApiEndpoint.ENDPOINT_HISTORY_RATES)
+                .addQueryParameter("start_at", startDate)
+                .addQueryParameter("end_at", endDate)
+                .addQueryParameter("symbols", symbol)
+                .addQueryParameter("base", base)
+                .build()
+                .getObjectObservable(HistoryRatesResponse.class);
     }
 
     private AppApiHelper() {
