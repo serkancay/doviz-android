@@ -4,4 +4,7 @@
     <!-- MainActivity -->
     <string name="main_activity_exchange_rates_menu_title">Döviz Kurları</string>
     <string name="main_activity_settings_menu_title">Ayarlar</string>
+
+    <!-- RatesFragment -->
+    <string name="rates_fragment_title">Döviz Kurları</string>
 </resources>
