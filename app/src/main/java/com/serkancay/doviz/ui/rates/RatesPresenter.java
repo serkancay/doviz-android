@@ -111,20 +111,6 @@ public class RatesPresenter {
                         }
                     }
                 });
-        mInteractor.getHistoryRatesApiCall("2018-01-01", "2019-07-01", "TRY", "USD")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<HistoryRatesResponse>() {
-                    @Override
-                    public void accept(final HistoryRatesResponse historyRatesResponse) throws Exception {
-                        Log.d("TRY", historyRatesResponse.getRates().get("2018-12-19").getTry() + "");
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(final Throwable throwable) throws Exception {
-                        Log.d("ERROR", throwable.getMessage() + "");
-                    }
-                });
     }
 
     public void onDestroy() {

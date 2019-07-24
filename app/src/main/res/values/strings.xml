@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Döviz</string>
+    <string name="default_notification_channel_id">com.serkancay.doviz</string>
 
     <!-- MainActivity -->
     <string name="main_activity_exchange_rates_menu_title">Döviz Kurları</string>

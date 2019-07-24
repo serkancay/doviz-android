@@ -1,25 +1,33 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.serkancay.doviz"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.exchangeratesapi.io\"")
+            buildConfigField("String", "FCM_SERVER_KEY", "\"AAAA09P16bg:APA91bEYn_FKt2-PDguy8YRA09B9UoT1wncGuW0i8UAo_iu2dIYkscFxY6oVYFZT1y3RG4bv-Mw1CQFIxH2FE_KADDVZX0J9GZhYnCxq1ncKNaR7RB5Nv7bUiFjPLM3qJB4digzPLiWP\"")
             debuggable true
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://api.exchangeratesapi.io\"")
+            buildConfigField("String", "FCM_SERVER_KEY", "\"AAAA09P16bg:APA91bEYn_FKt2-PDguy8YRA09B9UoT1wncGuW0i8UAo_iu2dIYkscFxY6oVYFZT1y3RG4bv-Mw1CQFIxH2FE_KADDVZX0J9GZhYnCxq1ncKNaR7RB5Nv7bUiFjPLM3qJB4digzPLiWP\"")
+
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -27,13 +35,18 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Support Libraries
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
 
     // UI
-    implementation 'com.jakewharton:butterknife:8.7.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     // Networking
     implementation "com.amitshekhar.android:rx2-android-networking:1.0.2"
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+
 }

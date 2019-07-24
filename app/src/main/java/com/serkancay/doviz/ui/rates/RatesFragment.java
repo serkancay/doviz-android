@@ -1,6 +1,6 @@
 package com.serkancay.doviz.ui.rates;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import com.serkancay.doviz.R;
 import com.serkancay.doviz.data.network.AppApiHelper;
@@ -9,7 +9,6 @@ import com.serkancay.doviz.ui.base.BaseFragment;
 import com.serkancay.doviz.ui.rates.RateListAdapter.Callback;
 import com.serkancay.doviz.ui.rates.history.HistoryFragment;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 /**
  * Created by S.Serkan Cay on 24.07.2019

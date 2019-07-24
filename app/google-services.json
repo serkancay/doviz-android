@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "909794208184",
+    "firebase_url": "https://doviz-dab94.firebaseio.com",
+    "project_id": "doviz-dab94",
+    "storage_bucket": "doviz-dab94.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909794208184:android:601584fb6173f46a",
+        "android_client_info": {
+          "package_name": "com.serkancay.doviz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909794208184-0rr22dgrpuu7iduthcr70oo22mm4v47n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB796vNWA6lUSSbUl-w4b0_VfdLNjJfswk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909794208184-0rr22dgrpuu7iduthcr70oo22mm4v47n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

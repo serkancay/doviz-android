@@ -13,6 +13,8 @@ public final class ApiEndpoint {
 
     public static final String ENDPOINT_HISTORY_RATES = BuildConfig.BASE_URL + "/history";
 
+    public static final String ENDPOINT_FCM = "https://fcm.googleapis.com/fcm/send";
+
     private ApiEndpoint() {
     }
 

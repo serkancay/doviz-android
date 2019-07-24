@@ -1,6 +1,7 @@
 package com.serkancay.doviz.ui.rates.history;
 
-import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import butterknife.BindView;
@@ -43,7 +44,7 @@ public class HistoryFragment extends BaseFragment implements HistoryView {
 
     @Override
     public void onResumed() {
-        getNavigationPresenter().setTitle(getResources().getString(R.string.history_fragment_title));
+        getNavigationPresenter().setTitle(mBase + "/TRY");
         getNavigationPresenter().setDisplayHomeAsUpEnabled(true);
         mPresenter.onResume(mBase);
     }
@@ -57,6 +58,16 @@ public class HistoryFragment extends BaseFragment implements HistoryView {
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.history, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miShare: {
+                mPresenter.sendCurrencyToAllUsers(mBase);
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void setBase(String base) {

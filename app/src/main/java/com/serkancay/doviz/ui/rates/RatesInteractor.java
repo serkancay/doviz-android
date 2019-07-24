@@ -19,8 +19,4 @@ public class RatesInteractor extends BaseInteractor {
     public Observable<LatestRatesResponse> getLatestRatesApiCall(String base) {
         return getApiHelper().getLatestRatesApiCall(base);
     }
-
-    public Observable<HistoryRatesResponse> getHistoryRatesApiCall(String startDate, String endDate, String symbol, String base) {
-        return getApiHelper().getHistoryRatesApiCall(startDate, endDate, symbol, base);
-    }
 }
