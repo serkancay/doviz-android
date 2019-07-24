@@ -7,10 +7,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import butterknife.BindView;
 import com.serkancay.doviz.R;
 import com.serkancay.doviz.ui.base.BaseActivity;
 import com.serkancay.doviz.ui.base.BaseFragment;
+import com.serkancay.doviz.ui.rates.RatesFragment;
 
 public class MainActivity extends BaseActivity implements MainView {
 
@@ -18,8 +20,13 @@ public class MainActivity extends BaseActivity implements MainView {
         context.startActivity(new Intent(context, MainActivity.class));
     }
 
+    @BindView(R.id.flContent)
+    FrameLayout flContent;
+
     @BindView(R.id.bottomNavigationView)
     BottomNavigationView bottomNavigationView;
+
+    private RatesFragment frRates;
 
     private MainPresenter mPresenter;
 
@@ -30,7 +37,9 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void onCreated() {
+        frRates = new RatesFragment();
         mPresenter = new MainPresenter(this);
+        mPresenter.addFragment(frRates, false);
     }
 
     @Override
@@ -45,6 +54,8 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void setFragment(final BaseFragment fragment, boolean addToBackStack) {
+        fragment.attachPresenter(mPresenter);
+        replaceFragment(flContent, fragment, addToBackStack);
     }
 
     @Override
