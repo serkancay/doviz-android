@@ -18,4 +18,5 @@
     <string name="settings_fragment_spinner_turkish">Türkçe</string>
     <string name="settings_fragment_spinner_arabic">Arapça</string>
     <string name="settings_fragment_spinner_select">Dil Seçin</string>
+    <string name="settings_fragment_rate_list_date">Tarih</string>
 </resources>

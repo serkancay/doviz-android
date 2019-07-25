@@ -10,4 +10,5 @@
     <string name="settings_fragment_spinner_turkish">اللغة التركية</string>
     <string name="settings_fragment_spinner_arabic">عربى</string>
     <string name="settings_fragment_spinner_select">اختار اللغة</string>
+    <string name="settings_fragment_rate_list_date">تاريخ</string>
 </resources>

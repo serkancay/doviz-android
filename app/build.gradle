@@ -22,7 +22,9 @@ android {
             debuggable true
         }
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://api.exchangeratesapi.io\"")
             buildConfigField("String", "FCM_SERVER_KEY", "\"AAAA09P16bg:APA91bEYn_FKt2-PDguy8YRA09B9UoT1wncGuW0i8UAo_iu2dIYkscFxY6oVYFZT1y3RG4bv-Mw1CQFIxH2FE_KADDVZX0J9GZhYnCxq1ncKNaR7RB5Nv7bUiFjPLM3qJB4digzPLiWP\"")
