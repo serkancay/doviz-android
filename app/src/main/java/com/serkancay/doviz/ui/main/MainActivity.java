@@ -2,13 +2,13 @@ package com.serkancay.doviz.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
-import androidx.appcompat.app.ActionBar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import butterknife.BindView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 import com.serkancay.doviz.R;
 import com.serkancay.doviz.helper.LocaleHelper;
 import com.serkancay.doviz.ui.base.BaseActivity;
@@ -101,9 +101,7 @@ public class MainActivity extends BaseActivity implements MainView {
                 }
                 case R.id.miSettings: {
                     clearBackStack();
-                    if (frSettings == null) {
-                        frSettings = new SettingsFragment();
-                    }
+                    frSettings = new SettingsFragment();
                     mPresenter.addFragment(frSettings, false);
                     return true;
                 }

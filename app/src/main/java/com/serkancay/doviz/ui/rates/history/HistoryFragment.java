@@ -1,6 +1,8 @@
 package com.serkancay.doviz.ui.rates.history;
 
+import android.os.Bundle;
 import android.view.MenuItem;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,7 +37,7 @@ public class HistoryFragment extends BaseFragment implements HistoryView {
     }
 
     @Override
-    public void onCreated() {
+    public void onCreated(Bundle bundle) {
         setHasOptionsMenu(true);
         mRates = new HashMap<>();
         mHistoryListAdapter = new HistoryListAdapter(context, mRates);
@@ -54,6 +56,11 @@ public class HistoryFragment extends BaseFragment implements HistoryView {
     @Override
     public void onDestroyed() {
         mPresenter.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override

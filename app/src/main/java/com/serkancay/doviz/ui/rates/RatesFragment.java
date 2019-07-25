@@ -1,5 +1,6 @@
 package com.serkancay.doviz.ui.rates;
 
+import android.os.Bundle;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import com.serkancay.doviz.R;
@@ -32,7 +33,7 @@ public class RatesFragment extends BaseFragment implements RatesView {
     }
 
     @Override
-    public void onCreated() {
+    public void onCreated(Bundle bundle) {
         mRatesHashMap = new HashMap<>();
         mRateListAdapter = new RateListAdapter(context, mRatesHashMap);
         rvRates.setAdapter(mRateListAdapter);
@@ -86,4 +87,5 @@ public class RatesFragment extends BaseFragment implements RatesView {
             mPresenter.navigate(base);
         }
     };
+
 }

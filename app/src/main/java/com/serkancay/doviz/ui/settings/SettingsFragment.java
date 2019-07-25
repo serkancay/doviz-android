@@ -1,5 +1,6 @@
 package com.serkancay.doviz.ui.settings;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -46,7 +47,7 @@ public class SettingsFragment extends BaseFragment implements SettingsView, OnIt
     }
 
     @Override
-    public void onCreated() {
+    public void onCreated(Bundle bundle) {
         mLanguages = new LinkedHashMap<>();
         mRates = new ArrayList<>();
         mRateListAdapter = new RateListAdapter(context, mRates);

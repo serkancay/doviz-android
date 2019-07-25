@@ -3,10 +3,6 @@ package com.serkancay.doviz;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
-import android.os.Build.VERSION_CODES;
-import android.preference.PreferenceManager;
 import com.androidnetworking.AndroidNetworking;
 import com.serkancay.doviz.data.network.TLSSocketFactory;
 import com.serkancay.doviz.data.preferences.PreferencesHelper;
@@ -52,21 +48,6 @@ public class App extends Application {
 
     public PreferencesHelper getPreferencesHelper() {
         return mPreferencesHelper;
-    }
-
-    public void changeLang(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-
-        Resources res = getApplicationContext().getResources();
-        Configuration config = new Configuration(res.getConfiguration());
-        if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-            config.setLocale(locale);
-            getApplicationContext().createConfigurationContext(config);
-        } else {
-            config.locale = locale;
-            res.updateConfiguration(config, res.getDisplayMetrics());
-        }
     }
 
     private void initOkHttpClient() {

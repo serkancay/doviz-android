@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.ButterKnife;
 import com.serkancay.doviz.App;
 import com.serkancay.doviz.ui.base.FragmentNavigation.Presenter;
@@ -30,7 +31,7 @@ public class BaseFragment extends Fragment implements FragmentNavigation.View {
         return -1;
     }
 
-    public void onCreated() {
+    public void onCreated(Bundle bundle) {
     }
 
     public void onResumed() {
@@ -60,7 +61,7 @@ public class BaseFragment extends Fragment implements FragmentNavigation.View {
             vgContainer = (ViewGroup) inflater.inflate(getLayoutId(), null);
             ButterKnife.bind(this, vgContainer);
         }
-        onCreated();
+        onCreated(savedInstanceState);
         bindEvents();
         return vgContainer;
     }
@@ -86,6 +87,15 @@ public class BaseFragment extends Fragment implements FragmentNavigation.View {
     @Override
     public void attachPresenter(final Presenter presenter) {
         mNavigationPresenter = presenter;
+    }
+
+    public void replaceFragment(View view, Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        ft.replace(view.getId(), fragment, fragment.getClass().getSimpleName());
+        if (addToBackStack) {
+            ft.addToBackStack(fragment.getClass().getSimpleName());
+        }
+        ft.commit();
     }
 
     public App getApp() {
