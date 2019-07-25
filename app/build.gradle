@@ -14,7 +14,8 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.exchangeratesapi.io\"")
-            buildConfigField("String", "FCM_SERVER_KEY", "\"AAAA09P16bg:APA91bEYn_FKt2-PDguy8YRA09B9UoT1wncGuW0i8UAo_iu2dIYkscFxY6oVYFZT1y3RG4bv-Mw1CQFIxH2FE_KADDVZX0J9GZhYnCxq1ncKNaR7RB5Nv7bUiFjPLM3qJB4digzPLiWP\"")
+            buildConfigField("String", "FCM_SERVER_KEY",
+                    "\"AAAA09P16bg:APA91bEYn_FKt2-PDguy8YRA09B9UoT1wncGuW0i8UAo_iu2dIYkscFxY6oVYFZT1y3RG4bv-Mw1CQFIxH2FE_KADDVZX0J9GZhYnCxq1ncKNaR7RB5Nv7bUiFjPLM3qJB4digzPLiWP\"")
             buildConfigField("String", "ALIAS", "\"doviz20192\"")
             buildConfigField("String", "KEY_STORE_FILE_NAME", "\"doviz222019\"")
             buildConfigField("String", "KEY_STORE_PASSWORD", "\"2019doviz22\"")
@@ -27,12 +28,31 @@ android {
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://api.exchangeratesapi.io\"")
-            buildConfigField("String", "FCM_SERVER_KEY", "\"AAAA09P16bg:APA91bEYn_FKt2-PDguy8YRA09B9UoT1wncGuW0i8UAo_iu2dIYkscFxY6oVYFZT1y3RG4bv-Mw1CQFIxH2FE_KADDVZX0J9GZhYnCxq1ncKNaR7RB5Nv7bUiFjPLM3qJB4digzPLiWP\"")
+            buildConfigField("String", "FCM_SERVER_KEY",
+                    "\"AAAA09P16bg:APA91bEYn_FKt2-PDguy8YRA09B9UoT1wncGuW0i8UAo_iu2dIYkscFxY6oVYFZT1y3RG4bv-Mw1CQFIxH2FE_KADDVZX0J9GZhYnCxq1ncKNaR7RB5Nv7bUiFjPLM3qJB4digzPLiWP\"")
             buildConfigField("String", "ALIAS", "\"doviz20192\"")
             buildConfigField("String", "KEY_STORE_FILE_NAME", "\"doviz222019\"")
             buildConfigField("String", "KEY_STORE_PASSWORD", "\"2019doviz22\"")
-
-
+        }
+        flavorDimensions "version"
+        productFlavors {
+            Dev {
+                dimension "version"
+            }
+            Prod {
+                dimension "version"
+            }
+        }
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                def project = "DovizApp"
+                def flavor = variant.productFlavors[0].name
+                def newApkName = project + flavor + ".apk"
+                if (flavor == "Prod") {
+                    newApkName = project + ".apk"
+                }
+                outputFileName = new File(newApkName)
+            }
         }
     }
     compileOptions {
