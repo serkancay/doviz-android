@@ -1,10 +1,9 @@
 package com.serkancay.doviz.ui.splash;
 
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.serkancay.doviz.Constants;
-import com.serkancay.doviz.ui.main.MainActivity;
 import com.serkancay.doviz.ui.base.BaseActivity;
+import com.serkancay.doviz.ui.main.MainActivity;
 
 /**
  * Created by S.Serkan Cay on 24.07.2019

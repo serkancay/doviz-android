@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import butterknife.BindView;
 import com.serkancay.doviz.R;
+import com.serkancay.doviz.data.db.AppDatabase;
 import com.serkancay.doviz.data.network.AppApiHelper;
 import com.serkancay.doviz.data.network.model.Rate;
 import com.serkancay.doviz.ui.base.BaseFragment;
@@ -39,7 +40,8 @@ public class HistoryFragment extends BaseFragment implements HistoryView {
         mRates = new HashMap<>();
         mHistoryListAdapter = new HistoryListAdapter(context, mRates);
         rvHistories.setAdapter(mHistoryListAdapter);
-        mPresenter = new HistoryPresenter(this, new HistoryInteractor(AppApiHelper.getApiHelper()));
+        mPresenter = new HistoryPresenter(this, new HistoryInteractor(AppApiHelper.getApiHelper(),
+                AppDatabase.getDatabase(context)));
     }
 
     @Override

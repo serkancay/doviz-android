@@ -3,6 +3,7 @@ package com.serkancay.doviz.ui.rates;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import com.serkancay.doviz.R;
+import com.serkancay.doviz.data.db.AppDatabase;
 import com.serkancay.doviz.data.network.AppApiHelper;
 import com.serkancay.doviz.data.network.model.Rate;
 import com.serkancay.doviz.ui.base.BaseFragment;
@@ -35,7 +36,8 @@ public class RatesFragment extends BaseFragment implements RatesView {
         mRatesHashMap = new HashMap<>();
         mRateListAdapter = new RateListAdapter(context, mRatesHashMap);
         rvRates.setAdapter(mRateListAdapter);
-        mPresenter = new RatesPresenter(this, new RatesInteractor(AppApiHelper.getApiHelper()));
+        mPresenter = new RatesPresenter(this,
+                new RatesInteractor(AppApiHelper.getApiHelper(), AppDatabase.getDatabase(context)));
     }
 
     @Override

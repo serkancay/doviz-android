@@ -1,5 +1,6 @@
 package com.serkancay.doviz.ui.rates;
 
+import com.serkancay.doviz.data.db.AppDatabase;
 import com.serkancay.doviz.data.network.ApiHelper;
 import com.serkancay.doviz.data.network.model.HistoryRatesResponse;
 import com.serkancay.doviz.data.network.model.LatestRatesResponse;
@@ -12,8 +13,8 @@ import io.reactivex.Observable;
 
 public class RatesInteractor extends BaseInteractor {
 
-    public RatesInteractor(final ApiHelper apiHelper) {
-        super(apiHelper);
+    public RatesInteractor(final ApiHelper apiHelper, final AppDatabase appDatabase) {
+        super(apiHelper, appDatabase);
     }
 
     public Observable<LatestRatesResponse> getLatestRatesApiCall(String base) {

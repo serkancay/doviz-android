@@ -1,5 +1,6 @@
 package com.serkancay.doviz.ui.base;
 
+import com.serkancay.doviz.data.db.AppDatabase;
 import com.serkancay.doviz.data.network.ApiHelper;
 
 /**
@@ -10,8 +11,11 @@ public class BaseInteractor {
 
     private final ApiHelper mApiHelper;
 
-    public BaseInteractor(ApiHelper apiHelper) {
+    private AppDatabase mAppDatabase;
+
+    public BaseInteractor(ApiHelper apiHelper, AppDatabase appDatabase) {
         mApiHelper = apiHelper;
+        mAppDatabase = appDatabase;
     }
 
     public ApiHelper getApiHelper() {

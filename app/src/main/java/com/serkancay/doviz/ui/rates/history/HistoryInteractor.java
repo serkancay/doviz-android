@@ -1,5 +1,6 @@
 package com.serkancay.doviz.ui.rates.history;
 
+import com.serkancay.doviz.data.db.AppDatabase;
 import com.serkancay.doviz.data.network.ApiHelper;
 import com.serkancay.doviz.data.network.model.HistoryRatesResponse;
 import com.serkancay.doviz.data.network.model.LatestRatesResponse;
@@ -13,8 +14,8 @@ import org.json.JSONObject;
 
 public class HistoryInteractor extends BaseInteractor {
 
-    public HistoryInteractor(final ApiHelper apiHelper) {
-        super(apiHelper);
+    public HistoryInteractor(final ApiHelper apiHelper, final AppDatabase appDatabase) {
+        super(apiHelper, appDatabase);
     }
 
     public Observable<HistoryRatesResponse> getHistoryRatesApiCall(String startDate, String endDate, String symbol,
