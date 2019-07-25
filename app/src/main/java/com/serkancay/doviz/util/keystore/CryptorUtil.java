@@ -14,14 +14,14 @@ import java.security.cert.CertificateException;
 
 public class CryptorUtil {
 
-    public static String encrypt(Context context, String token) {
+    public static String encrypt(Context context, String text) {
         SecurityKey securityKey = getSecurityKey(context);
-        return securityKey != null ? securityKey.encrypt(token) : null;
+        return securityKey != null ? securityKey.encrypt(text) : null;
     }
 
-    public static String decrypt(Context context, String token) {
+    public static String decrypt(Context context, String text) {
         SecurityKey securityKey = getSecurityKey(context);
-        return securityKey != null ? securityKey.decrypt(token) : null;
+        return securityKey != null ? securityKey.decrypt(text) : null;
     }
 
     private static SecurityKey getSecurityKey(Context context) {

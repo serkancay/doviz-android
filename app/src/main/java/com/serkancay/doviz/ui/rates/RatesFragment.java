@@ -36,7 +36,7 @@ public class RatesFragment extends BaseFragment implements RatesView {
         mRatesHashMap = new HashMap<>();
         mRateListAdapter = new RateListAdapter(context, mRatesHashMap);
         rvRates.setAdapter(mRateListAdapter);
-        mPresenter = new RatesPresenter(this,
+        mPresenter = new RatesPresenter(context, this,
                 new RatesInteractor(AppApiHelper.getApiHelper(), AppDatabase.getDatabase(context)));
     }
 

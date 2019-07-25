@@ -22,4 +22,8 @@ public class BaseInteractor {
         return mApiHelper;
     }
 
+    public AppDatabase getAppDatabase() {
+        return mAppDatabase;
+    }
+
 }

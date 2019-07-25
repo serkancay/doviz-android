@@ -3,7 +3,9 @@ package com.serkancay.doviz.ui.settings;
 import android.content.Context;
 import android.content.Intent;
 import com.serkancay.doviz.R;
+import com.serkancay.doviz.data.db.entity.Rate;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Created by S.Serkan Cay on 25.07.2019
@@ -13,16 +15,21 @@ public class SettingsPresenter {
 
     private SettingsView mView;
 
+    private SettingsInteractor mInteractor;
+
     private Context mContext;
 
-    public SettingsPresenter(Context context, SettingsView view) {
+    public SettingsPresenter(Context context, SettingsView view, SettingsInteractor interactor) {
         mView = view;
+        mInteractor = interactor;
         mContext = context;
     }
 
     public void onResume() {
+        List<Rate> rates = mInteractor.getRates();
         if (mView != null) {
             mView.updateSpinner(generateLanguages());
+            mView.updateRateList(rates);
         }
     }
 

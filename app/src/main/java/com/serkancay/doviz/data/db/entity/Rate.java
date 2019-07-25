@@ -18,12 +18,12 @@ public class Rate {
     public String base;
 
     @ColumnInfo(name = "value")
-    public float value;
+    public String value;
 
     @ColumnInfo(name = "date")
     public String date;
 
-    public Rate(String base, float value, String date) {
+    public Rate(String base, String value, String date) {
         this.base = base;
         this.value = value;
         this.date = date;

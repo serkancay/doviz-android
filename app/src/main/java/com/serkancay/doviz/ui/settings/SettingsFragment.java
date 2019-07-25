@@ -1,16 +1,20 @@
 package com.serkancay.doviz.ui.settings;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import com.serkancay.doviz.R;
+import com.serkancay.doviz.data.db.AppDatabase;
+import com.serkancay.doviz.data.db.entity.Rate;
+import com.serkancay.doviz.data.network.AppApiHelper;
 import com.serkancay.doviz.helper.LocaleHelper;
 import com.serkancay.doviz.ui.base.BaseFragment;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Created by S.Serkan Cay on 24.07.2019
@@ -21,9 +25,16 @@ public class SettingsFragment extends BaseFragment implements SettingsView, OnIt
     @BindView(R.id.spinner)
     Spinner spinner;
 
+    @BindView(R.id.rvRates)
+    RecyclerView rvRates;
+
     private SettingsPresenter mPresenter;
 
     private LinkedHashMapAdapter mLinkedHashMapAdapter;
+
+    private RateListAdapter mRateListAdapter;
+
+    private List<Rate> mRates;
 
     private LinkedHashMap<String, String> mLanguages;
 
@@ -37,10 +48,15 @@ public class SettingsFragment extends BaseFragment implements SettingsView, OnIt
     @Override
     public void onCreated() {
         mLanguages = new LinkedHashMap<>();
+        mRates = new ArrayList<>();
+        mRateListAdapter = new RateListAdapter(context, mRates);
         mLinkedHashMapAdapter = new LinkedHashMapAdapter(context, android.R.layout.simple_spinner_item, mLanguages);
         mLinkedHashMapAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(mLinkedHashMapAdapter);
-        mPresenter = new SettingsPresenter(context, this);
+        rvRates.setAdapter(mRateListAdapter);
+        mPresenter = new SettingsPresenter(context, this,
+                new SettingsInteractor(AppApiHelper.getApiHelper(), AppDatabase
+                        .getDatabase(context)));
     }
 
     @Override
@@ -74,5 +90,12 @@ public class SettingsFragment extends BaseFragment implements SettingsView, OnIt
         mLanguages.clear();
         mLanguages.putAll(languages);
         mLinkedHashMapAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void updateRateList(final List<Rate> rates) {
+        mRates.clear();
+        mRates.addAll(rates);
+        mRateListAdapter.notifyDataSetChanged();
     }
 }

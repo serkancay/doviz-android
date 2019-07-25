@@ -2,6 +2,7 @@ package com.serkancay.doviz.data.db.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import com.serkancay.doviz.data.db.entity.Rate;
 import java.util.List;
@@ -16,8 +17,7 @@ public interface RateDao {
     @Query("SELECT * FROM rates")
     List<Rate> getAllRates();
 
-
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertRate(Rate rate);
 
 }

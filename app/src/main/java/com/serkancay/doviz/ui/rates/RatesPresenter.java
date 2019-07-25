@@ -1,14 +1,14 @@
 package com.serkancay.doviz.ui.rates;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.util.Log;
-import com.serkancay.doviz.data.network.model.HistoryRatesResponse;
+import com.serkancay.doviz.data.db.entity.Rate;
 import com.serkancay.doviz.data.network.model.LatestRatesResponse;
-import io.reactivex.Scheduler;
+import com.serkancay.doviz.util.keystore.CryptorUtil;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import java.util.HashMap;
 
 /**
  * Created by S.Serkan Cay on 24.07.2019
@@ -20,9 +20,12 @@ public class RatesPresenter {
 
     private RatesInteractor mInteractor;
 
-    public RatesPresenter(RatesView view, RatesInteractor interactor) {
+    private Context mContext;
+
+    public RatesPresenter(Context context, RatesView view, RatesInteractor interactor) {
         mView = view;
         mInteractor = interactor;
+        mContext = context;
     }
 
     @SuppressLint("CheckResult")
@@ -37,7 +40,15 @@ public class RatesPresenter {
                     @Override
                     public void accept(final LatestRatesResponse latestRatesResponse) throws Exception {
                         if (latestRatesResponse != null && latestRatesResponse.getRate() != null) {
-                            Log.d("RATE", latestRatesResponse.getRate().getTry() + "");
+                            String base = latestRatesResponse.getBase();
+                            String value = latestRatesResponse.getRate().getTry() + "";
+                            String date = latestRatesResponse.getDate();
+                            String encryptedBase = CryptorUtil.encrypt(mContext, base);
+                            String encryptedValue = CryptorUtil.encrypt(mContext, value);
+                            String encryptedDate = CryptorUtil.encrypt(mContext, date);
+                            Rate rate = new Rate(encryptedBase,
+                                    encryptedValue, encryptedDate);
+                            mInteractor.storeRate(rate);
                             if (mView != null) {
                                 mView.updateRate(latestRatesResponse.getBase(), latestRatesResponse.getDate(),
                                         latestRatesResponse.getRate());
@@ -64,7 +75,15 @@ public class RatesPresenter {
                     @Override
                     public void accept(final LatestRatesResponse latestRatesResponse) throws Exception {
                         if (latestRatesResponse != null && latestRatesResponse.getRate() != null) {
-                            Log.d("RATE", latestRatesResponse.getRate().getTry() + "");
+                            String base = latestRatesResponse.getBase();
+                            String value = latestRatesResponse.getRate().getTry() + "";
+                            String date = latestRatesResponse.getDate();
+                            String encryptedBase = CryptorUtil.encrypt(mContext, base);
+                            String encryptedValue = CryptorUtil.encrypt(mContext, value);
+                            String encryptedDate = CryptorUtil.encrypt(mContext, date);
+                            Rate rate = new Rate(encryptedBase,
+                                    encryptedValue, encryptedDate);
+                            mInteractor.storeRate(rate);
                             if (mView != null) {
                                 mView.updateRate(latestRatesResponse.getBase(), latestRatesResponse.getDate(),
                                         latestRatesResponse.getRate());
@@ -91,7 +110,15 @@ public class RatesPresenter {
                     @Override
                     public void accept(final LatestRatesResponse latestRatesResponse) throws Exception {
                         if (latestRatesResponse != null && latestRatesResponse.getRate() != null) {
-                            Log.d("RATE", latestRatesResponse.getRate().getTry() + "");
+                            String base = latestRatesResponse.getBase();
+                            String value = latestRatesResponse.getRate().getTry() + "";
+                            String date = latestRatesResponse.getDate();
+                            String encryptedBase = CryptorUtil.encrypt(mContext, base);
+                            String encryptedValue = CryptorUtil.encrypt(mContext, value);
+                            String encryptedDate = CryptorUtil.encrypt(mContext, date);
+                            Rate rate = new Rate(encryptedBase,
+                                    encryptedValue, encryptedDate);
+                            mInteractor.storeRate(rate);
                             if (mView != null) {
                                 mView.updateRate(latestRatesResponse.getBase(), latestRatesResponse.getDate(),
                                         latestRatesResponse.getRate());
